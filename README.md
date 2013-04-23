@@ -4,7 +4,7 @@ Quanta
 Quanta is a game about energy, particles, and lasers.
 
 ## Building ##
-Quanta uses [CMake][http://www.cmake.org/] to generate build files. 
+Quanta uses [CMake](http://www.cmake.org/) to generate build files. 
 
 ## The MIT License (MIT) ##
 
