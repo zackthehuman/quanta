@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Window/WindowStyle.hpp>
 
 namespace quanta {
 
@@ -18,9 +19,10 @@ namespace quanta {
     int Game::run() {
         sf::Clock clock;
         sf::VideoMode videoMode(width, height, 32);
+        sf::ContextSettings contextSettings(0, 0, 16, 2, 0);
         sf::RenderWindow window;
 
-        window.create(videoMode, "Quanta");
+        window.create(videoMode, "Quanta", sf::Style::Default, contextSettings);
         window.setActive(true);
         window.setVerticalSyncEnabled(false);
         window.setKeyRepeatEnabled(false);
@@ -60,6 +62,7 @@ namespace quanta {
 
                 // update simulation here
                 // simulation.update(dt);
+                hex.rotate(1000.0f / 60.0f / 13.0f);
                 // done updating simulation
 
                 accumulator -= dt;
