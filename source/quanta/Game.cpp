@@ -1,7 +1,10 @@
 #include "quanta/Game.hpp"
+#include "quanta/ui/HexagonShape.hpp"
 
 #include <cstdlib>
+
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 namespace quanta {
 
@@ -33,6 +36,13 @@ namespace quanta {
 
         bool quit = false;
 
+        HexagonShape hex(60);
+        hex.setPosition(200.0f, 200.0f);
+
+        sf::RectangleShape rect(sf::Vector2f(1.0f, 1.0f));
+        rect.setPosition(hex.getPosition());
+        rect.setFillColor(sf::Color::Red);
+
         while(!quit) {
 
             newTime = clock.getElapsedTime();
@@ -57,6 +67,8 @@ namespace quanta {
             } // closes integration loop
 
             window.clear(sf::Color::Magenta);
+            window.draw(hex);
+            window.draw(rect);
             window.display();
 
         } // closes !quit loop

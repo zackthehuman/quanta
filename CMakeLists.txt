@@ -12,13 +12,23 @@ set(QUANTA_SOURCE_DIR ${PROJECT_SOURCE_DIR}/source)
 set(QUANTA_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 
 set(QUANTA_SOURCES
+    
+    # Game files
     ${QUANTA_SOURCE_DIR}/Main.cpp
     ${QUANTA_SOURCE_DIR}/quanta/Game.cpp
+
+    # UI files
+    ${QUANTA_SOURCE_DIR}/quanta/ui/HexagonShape.cpp
 )
 
 set(QUANTA_HEADERS
+
+    # Game files
     ${QUANTA_INCLUDE_DIR}/Main.hpp
     ${QUANTA_INCLUDE_DIR}/quanta/Game.hpp
+
+    # UI Files
+    ${QUANTA_INCLUDE_DIR}/quanta/ui/HexagonShape.hpp
 )
 
 source_group("Header Files" FILES ${QUANTA_HEADERS})

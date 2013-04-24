@@ -1,3 +1,6 @@
+#ifndef QUANTA_GAME
+#define QUANTA_GAME
+
 namespace quanta {
 
     class Game {
@@ -11,3 +14,5 @@ namespace quanta {
     };
 
 } // quanta
+
+#endif // QUANTA_GAME
