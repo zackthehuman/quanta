@@ -14,6 +14,7 @@ namespace quanta {
         , faceLength(faceLength)
         , points(sf::TrianglesFan, 7)
     {
+        calculateMetrics();
         calculateVerticies();
     }
 
@@ -21,17 +22,49 @@ namespace quanta {
         // dtor
     }
 
-    void HexagonShape::calculateVerticies() {
-        const float angle = (2.0f * 3.1415926538f) / 6.0f;
+    void HexagonShape::calculateMetrics() {
+        const float degree30 = 3.1415926548f / 6.0f;
 
-        for(int i = 0; i < 7; ++i) {
-            points[i] = sf::Vertex(sf::Vector2f(std::sin(angle * i) *  faceLength, std::cos(angle * i) * faceLength), sf::Color::Green);
-        }
+        height = std::sin(degree30) * faceLength;
+        radius = std::cos(degree30) * faceLength;
+        boundingBoxWidth = 2 * radius;
+        boundingBoxHeight = faceLength + (2 * height);
+    }
+
+    void HexagonShape::calculateVerticies() {
+        points[0] = sf::Vertex(sf::Vector2f(radius, 0.0f), sf::Color::Cyan);
+        points[1] = sf::Vertex(sf::Vector2f(boundingBoxWidth, height), sf::Color::Red);
+        points[2] = sf::Vertex(sf::Vector2f(boundingBoxWidth, height + faceLength), sf::Color::Yellow);
+        points[3] = sf::Vertex(sf::Vector2f(radius, boundingBoxHeight), sf::Color::Green);
+        points[4] = sf::Vertex(sf::Vector2f(0.0f, height + faceLength), sf::Color::Blue);
+        points[5] = sf::Vertex(sf::Vector2f(0.0f, height), sf::Color::Magenta);
+        points[6] = sf::Vertex(sf::Vector2f(radius, 0.0f), sf::Color::White);
     }
 
     void HexagonShape::draw(sf::RenderTarget& target, sf::RenderStates states) const {
         states.transform *= getTransform();
         target.draw(points, states);
+    }
+
+
+    float HexagonShape::getFaceLength() const {
+        return faceLength;
+    }
+
+    float HexagonShape::getTriangleHeight() const {
+        return height;
+    }
+
+    float HexagonShape::getTriangleWidth() const {
+        return radius;
+    }
+
+    float HexagonShape::getBoxHeight() const {
+        return boundingBoxHeight;
+    }
+
+    float HexagonShape::getBoxWidth() const {
+        return boundingBoxWidth;
     }
 
 } // quanta

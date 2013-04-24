@@ -10,9 +10,14 @@ namespace quanta {
 
     class HexagonShape : public sf::Drawable, public sf::Transformable {
     private:
-        float faceLength;
+        float faceLength;           // s
+        float height;               // h
+        float radius;               // r
+        float boundingBoxWidth;     // a
+        float boundingBoxHeight;    // b
         sf::VertexArray points;
 
+        void calculateMetrics();
         void calculateVerticies();
 
     protected:
@@ -20,6 +25,13 @@ namespace quanta {
 
     public:
         HexagonShape(float faceLength);
+
+        float getFaceLength() const;
+        float getTriangleHeight() const;
+        float getTriangleWidth() const;
+        float getBoxHeight() const;
+        float getBoxWidth() const;
+        
         virtual ~HexagonShape();
     };
 

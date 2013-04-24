@@ -38,12 +38,7 @@ namespace quanta {
 
         bool quit = false;
 
-        HexagonShape hex(60);
-        hex.setPosition(200.0f, 200.0f);
-
-        sf::RectangleShape rect(sf::Vector2f(1.0f, 1.0f));
-        rect.setPosition(hex.getPosition());
-        rect.setFillColor(sf::Color::Red);
+        HexagonShape hex(30);
 
         while(!quit) {
 
@@ -62,7 +57,7 @@ namespace quanta {
 
                 // update simulation here
                 // simulation.update(dt);
-                hex.rotate(1000.0f / 60.0f / 13.0f);
+                // hex.rotate(1000.0f / 60.0f / 13.0f);
                 // done updating simulation
 
                 accumulator -= dt;
@@ -70,8 +65,19 @@ namespace quanta {
             } // closes integration loop
 
             window.clear(sf::Color::Magenta);
-            window.draw(hex);
-            window.draw(rect);
+
+            for(int x = 0; x < 5; ++x) {
+                for(int y = 0; y < 5; ++y) {
+                    hex.setPosition(x * hex.getBoxWidth(), y * (hex.getFaceLength() + hex.getTriangleHeight()));
+
+                    if(y % 2 == 1) {
+                        hex.move(hex.getTriangleWidth(), 0.0f);
+                    }
+                    
+                    window.draw(hex);
+                }
+            }
+
             window.display();
 
         } // closes !quit loop
