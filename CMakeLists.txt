@@ -5,14 +5,10 @@ project(quanta)
 # Quanta Versions
 set(QUANTA_VERSION_MAJOR 0)
 set(QUANTA_VERSION_MINOR 1)
-
-set(CMAKE_CXX_FLAGS "-std=c++11 -W3 -O")
-
 set(QUANTA_SOURCE_DIR ${PROJECT_SOURCE_DIR}/source)
 set(QUANTA_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 
 set(QUANTA_SOURCES
-    
     # Game files
     ${QUANTA_SOURCE_DIR}/Main.cpp
     ${QUANTA_SOURCE_DIR}/quanta/Game.cpp
@@ -22,7 +18,6 @@ set(QUANTA_SOURCES
 )
 
 set(QUANTA_HEADERS
-
     # Game files
     ${QUANTA_INCLUDE_DIR}/Main.hpp
     ${QUANTA_INCLUDE_DIR}/quanta/Game.hpp
@@ -47,6 +42,8 @@ if(MSVC)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc") 
     endif()
 endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -O")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 
