@@ -19,7 +19,7 @@ namespace quanta {
     int Game::run() {
         sf::Clock clock;
         sf::VideoMode videoMode(width, height, 32);
-        sf::ContextSettings contextSettings(0, 0, 16, 2, 0);
+        sf::ContextSettings contextSettings(0, 0, 0, 2, 0);
         sf::RenderWindow window;
 
         window.create(videoMode, "Quanta", sf::Style::Default, contextSettings);
@@ -66,15 +66,22 @@ namespace quanta {
 
             window.clear(sf::Color::Magenta);
 
+            const float spacing = 3.0f;
             for(int x = 0; x < 5; ++x) {
                 for(int y = 0; y < 5; ++y) {
-                    hex.setPosition(x * hex.getBoxWidth(), y * (hex.getFaceLength() + hex.getTriangleHeight()));
+                    float spacingX = x * spacing;
+                    float spacingY = y * spacing;
+
+                    hex.setPosition(x * hex.getBoxWidth() + spacingX, y * (hex.getFaceLength() + hex.getTriangleHeight()) + spacingY);
 
                     if(y % 2 == 1) {
-                        hex.move(hex.getTriangleWidth(), 0.0f);
+                        hex.move(hex.getTriangleWidth() + (spacing / 2.0f), 0.0f);
                     }
                     
-                    window.draw(hex);
+                    // Don't draw last hex in odd rows
+                    if(!((y % 2 == 1) && x == 4)) {
+                        window.draw(hex);
+                    }
                 }
             }
 

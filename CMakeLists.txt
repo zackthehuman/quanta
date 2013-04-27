@@ -35,6 +35,9 @@ include_directories(${QUANTA_INCLUDE_DIR})
 
 if(WIN32)
     set(SFML_STATIC_LIBRARIES TRUE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W3")
+else()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -O")
 endif()
 
 if(MSVC)
@@ -42,8 +45,6 @@ if(MSVC)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc") 
     endif()
 endif()
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -O")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 

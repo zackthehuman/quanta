@@ -32,13 +32,13 @@ namespace quanta {
     }
 
     void HexagonShape::calculateVerticies() {
-        points[0] = sf::Vertex(sf::Vector2f(radius, 0.0f), sf::Color::Cyan);
-        points[1] = sf::Vertex(sf::Vector2f(boundingBoxWidth, height), sf::Color::Red);
-        points[2] = sf::Vertex(sf::Vector2f(boundingBoxWidth, height + faceLength), sf::Color::Yellow);
-        points[3] = sf::Vertex(sf::Vector2f(radius, boundingBoxHeight), sf::Color::Green);
-        points[4] = sf::Vertex(sf::Vector2f(0.0f, height + faceLength), sf::Color::Blue);
-        points[5] = sf::Vertex(sf::Vector2f(0.0f, height), sf::Color::Magenta);
-        points[6] = sf::Vertex(sf::Vector2f(radius, 0.0f), sf::Color::White);
+        points[0] = sf::Vertex(sf::Vector2f(radius,             0.0f),                  sf::Color::Cyan);
+        points[1] = sf::Vertex(sf::Vector2f(boundingBoxWidth,   height),                sf::Color::Cyan);
+        points[2] = sf::Vertex(sf::Vector2f(boundingBoxWidth,   height + faceLength),   sf::Color::Cyan);
+        points[3] = sf::Vertex(sf::Vector2f(radius,             boundingBoxHeight),     sf::Color::Cyan);
+        points[4] = sf::Vertex(sf::Vector2f(0.0f,               height + faceLength),   sf::Color::Cyan);
+        points[5] = sf::Vertex(sf::Vector2f(0.0f,               height),                sf::Color::Cyan);
+        points[6] = sf::Vertex(sf::Vector2f(radius,             0.0f),                  sf::Color::Cyan);
     }
 
     void HexagonShape::draw(sf::RenderTarget& target, sf::RenderStates states) const {
