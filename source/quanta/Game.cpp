@@ -38,7 +38,7 @@ namespace quanta {
 
         bool quit = false;
 
-        HexagonShape hex(30);
+        HexagonShape hex(30, sf::Color(33, 128, 200));
 
         while(!quit) {
 

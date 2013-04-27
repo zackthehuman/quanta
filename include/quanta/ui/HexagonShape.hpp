@@ -1,6 +1,7 @@
 #ifndef QUANTA_HEXAGON_SHAPE
 #define QUANTA_HEXAGON_SHAPE
 
+#include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Transformable.hpp>
@@ -24,13 +25,16 @@ namespace quanta {
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     public:
-        HexagonShape(float faceLength);
+        HexagonShape(float faceLength, const sf::Color & color = sf::Color(128, 128, 128, 255));
 
         float getFaceLength() const;
         float getTriangleHeight() const;
         float getTriangleWidth() const;
         float getBoxHeight() const;
         float getBoxWidth() const;
+
+        void setColor(const sf::Color & color);
+        const sf::Color & getColor() const;
         
         virtual ~HexagonShape();
     };
