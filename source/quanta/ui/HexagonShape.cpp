@@ -9,10 +9,13 @@
 
 namespace quanta {
 
+    const unsigned char HexagonShape::FACE_COUNT = 6;
+    const unsigned char HexagonShape::VERTEX_COUNT = FACE_COUNT + 2;
+
     HexagonShape::HexagonShape(float faceLength, const sf::Color & color)
         : sf::Drawable()
         , faceLength(faceLength)
-        , points(sf::TrianglesFan, 7)
+        , points(sf::TrianglesFan, VERTEX_COUNT)
     {
         calculateMetrics();
         calculateVerticies();
@@ -24,7 +27,7 @@ namespace quanta {
     }
 
     void HexagonShape::calculateMetrics() {
-        const float degree30 = 3.1415926548f / 6.0f;
+        const float degree30 = 3.1415926548f / static_cast<float>(FACE_COUNT);
 
         height = std::sin(degree30) * faceLength;
         radius = std::cos(degree30) * faceLength;
@@ -33,13 +36,17 @@ namespace quanta {
     }
 
     void HexagonShape::calculateVerticies() {
-        points[0] = sf::Vertex(sf::Vector2f(radius,             0.0f));
-        points[1] = sf::Vertex(sf::Vector2f(boundingBoxWidth,   height));
-        points[2] = sf::Vertex(sf::Vector2f(boundingBoxWidth,   height + faceLength));
-        points[3] = sf::Vertex(sf::Vector2f(radius,             boundingBoxHeight));
-        points[4] = sf::Vertex(sf::Vector2f(0.0f,               height + faceLength));
-        points[5] = sf::Vertex(sf::Vector2f(0.0f,               height));
-        points[6] = sf::Vertex(sf::Vector2f(radius,             0.0f));
+        // This configuration assumes that points[0] is the central vertex and
+        // the other verticies encircle the central vertex.
+        points[0] = sf::Vertex(sf::Vector2f(boundingBoxWidth / 2.0f, boundingBoxHeight / 2.0f));
+        points[1] = sf::Vertex(sf::Vector2f(radius,                  0.0f));
+        points[2] = sf::Vertex(sf::Vector2f(boundingBoxWidth,        height));
+        points[3] = sf::Vertex(sf::Vector2f(boundingBoxWidth,        height + faceLength));
+        points[4] = sf::Vertex(sf::Vector2f(radius,                  boundingBoxHeight));
+        points[5] = sf::Vertex(sf::Vector2f(0.0f,                    height + faceLength));
+        points[6] = sf::Vertex(sf::Vector2f(0.0f,                    height));
+        points[7] = sf::Vertex(points[1]); // Complete the convex shape.
+
     }
 
     void HexagonShape::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -69,7 +76,7 @@ namespace quanta {
     }
 
     void HexagonShape::setColor(const sf::Color & color) {
-        for(int i = 0; i < 7; ++i) {
+        for(unsigned char i = 0; i < VERTEX_COUNT; ++i) {
             points[i].color = color;
         }
     }

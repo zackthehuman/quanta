@@ -11,6 +11,8 @@ namespace quanta {
 
     class HexagonShape : public sf::Drawable, public sf::Transformable {
     private:
+        static const unsigned char FACE_COUNT;    // how many faces this shape has
+        static const unsigned char VERTEX_COUNT;  // how many verticies this shape has
         float faceLength;           // s
         float height;               // h
         float radius;               // r
