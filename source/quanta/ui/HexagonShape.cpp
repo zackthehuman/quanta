@@ -47,6 +47,7 @@ namespace quanta {
         points[6] = sf::Vertex(sf::Vector2f(0.0f,                    height));
         points[7] = sf::Vertex(points[1]); // Complete the convex shape.
 
+        setOrigin(points[0].position);
     }
 
     void HexagonShape::draw(sf::RenderTarget& target, sf::RenderStates states) const {
